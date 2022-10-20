@@ -4,17 +4,17 @@ import SearchForm from './SearchForm/SearchForm';
 import Loader from 'components/Loader/Loader';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
 import Modal from 'components/Modal/Modal';
-import styles from "./searchbar.module.scss";
+import styles from "./gallery.module.scss";
 import axios from 'axios';
 
-export default function Searchbar() {
+export default function Gallery() {
   const [items,setItems]=useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
-  const [isVisible, setIsVisible] = useState(false);
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [isVisible] = useState(false);
+  const [isEmpty] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState("")
   
