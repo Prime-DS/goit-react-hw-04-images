@@ -13,11 +13,11 @@ const instance = axios.create({
 });
 
 export const searchImages = async (q, page) => {
-  const { data } = await instance.get('/', {
+  const { response } = await instance.get('/', {
     params: {
       page,
       q,
     },
   });
-  return data;
+  return response;
 };
