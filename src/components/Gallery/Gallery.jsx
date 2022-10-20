@@ -13,7 +13,7 @@ export default function Gallery() {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
-  // const [isVisible] = useState(false);
+  const [isVisible,setisVisible] = useState(false);
   const [isEmpty,setIsEmpty] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState("")
@@ -43,6 +43,7 @@ const KEY_API = '29398467-8a653d7b4fed816ab704a6050';
           const response = await axios.get(
             `https://pixabay.com/api/?q=${search}&page=${page}&key=${KEY_API}&image_type=photo&orientation=horizontal&per_page=12`
           );
+          setisVisible(page < Math.ceil(response.data.total/12))
           // const response = await searchImages(search, page);
           return response.data.hits;
         } catch (error) {
@@ -50,6 +51,7 @@ const KEY_API = '29398467-8a653d7b4fed816ab704a6050';
         } finally {
           setIsEmpty(false)
           setLoading(false)
+          
         }
     };
 
@@ -87,7 +89,7 @@ const KEY_API = '29398467-8a653d7b4fed816ab704a6050';
             {loading && <Loader />}
             {error && <p>Будь ласка спробуйте пізніе!</p>}
           {isImage && <ImageGallery items={items} onClick={openModal} />}
-          {items.length > 0 && <button onClick={onLoadMore} className={styles.loadMore}>Load more</button>}
+          {isVisible && <button onClick={onLoadMore} className={styles.loadMore}>Load more</button>}
           </>
     )
   
