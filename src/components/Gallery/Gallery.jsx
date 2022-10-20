@@ -13,8 +13,8 @@ export default function Gallery() {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
-  const [isVisible] = useState(false);
-  const [isEmpty] = useState(true);
+  // const [isVisible] = useState(false);
+  const [isEmpty,setIsEmpty] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState("")
   
@@ -33,7 +33,7 @@ useEffect(() => {
     setItems([])
     setSearch(search)
     setPage(1)
-    // setIsEmpty(true)
+    setIsEmpty(true)
 };
 
 
@@ -48,6 +48,7 @@ const KEY_API = '29398467-8a653d7b4fed816ab704a6050';
         } catch (error) {
           setError(error)
         } finally {
+          setIsEmpty(false)
           setLoading(false)
         }
     };
@@ -86,7 +87,7 @@ const KEY_API = '29398467-8a653d7b4fed816ab704a6050';
             {loading && <Loader />}
             {error && <p>Будь ласка спробуйте пізніе!</p>}
           {isImage && <ImageGallery items={items} onClick={openModal} />}
-          {isVisible && <button onClick={onLoadMore} className={styles.loadMore}>Load more</button>}
+          {items.length > 0 && <button onClick={onLoadMore} className={styles.loadMore}>Load more</button>}
           </>
     )
   
