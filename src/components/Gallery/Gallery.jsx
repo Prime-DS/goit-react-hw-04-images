@@ -58,9 +58,9 @@ const KEY_API = '29398467-8a653d7b4fed816ab704a6050';
 
   
 
-  const openModal = (largeImg ) => {
+  const openModal = (largeImgURL ) => {
     setModalOpen(true);
-    setLargeImageURL(largeImg )
+    setLargeImageURL(largeImgURL )
   }
   
   const closeModal = () => {
@@ -84,7 +84,7 @@ const KEY_API = '29398467-8a653d7b4fed816ab704a6050';
           </div>
           {isEmpty && <h2> They are no image...</h2> }
           {modalOpen && <Modal onClose={closeModal}>
-              <img src={largeImageURL} alt="foto cat" ></img>
+              <img src={largeImageURL.largeImageURL} alt="foto cat" ></img>
             </Modal>}
             {loading && <Loader />}
             {error && <p>Будь ласка спробуйте пізніе!</p>}
